@@ -77,7 +77,7 @@ class Post(db.Model):
   title=db.Column(db.String(255))
   election_id=db.Column(db.Integer,db.ForeignKey('elections.id'))
   candidates=db.relationship('Candidate',backref='post',lazy='dynamic')
-  votes=db.relationship('Candidate',backref='post',lazy='dynamic')
+  votes=db.relationship('Vote',backref='post',lazy='dynamic')
 
 
 class Candidate(db.Model):

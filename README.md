@@ -51,3 +51,16 @@ chmod a+x start.sh
 ./start.sh
 ```
 
+## To run tests
+
+Change environment name passed to create_app to tests
+
+manage.py
+```
+...
+
+create_app('tests')
+...
+
+```
+
