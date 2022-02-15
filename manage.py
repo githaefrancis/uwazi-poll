@@ -1,5 +1,5 @@
 from app import create_app,db
-# from app.models import User,Comment,Pitch,Category,Role
+from app.models import User,Role,Election,Post,Candidate,Vote
 from flask_migrate import Migrate
 
 app=create_app('development')
@@ -18,7 +18,7 @@ def test():
 
 @app.shell_context_processor
 def make_shell_context():
-  return dict(app=app,db=db)
+  return dict(app=app,db=db,User=User,Role=Role,Election=Election,Post=Post,Candidate=Candidate,Vote=Vote)
 
 if __name__=='__main__':
   app.run()
