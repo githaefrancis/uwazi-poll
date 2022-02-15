@@ -62,11 +62,14 @@ class Election(db.Model):
   id=db.Column(db.Integer,primary_key=True)
   title=db.Column(db.String(255))
   election_date=db.Column(db.Date)
-  start_time=db.Column(db.Time)
-  end_time=db.Column(db.Time)
+  start_time=db.Column(db.DateTime)
+  end_time=db.Column(db.DateTime)
   active=db.Column(db.Boolean,default=False)
   posts=db.relationship('Post',backref="election",lazy='dynamic')
   
+  def save_election(self):
+    db.session.add(self)
+    db.session.commit()
 
 class Post(db.Model):
   '''
@@ -79,6 +82,9 @@ class Post(db.Model):
   candidates=db.relationship('Candidate',backref='post',lazy='dynamic')
   votes=db.relationship('Vote',backref='post',lazy='dynamic')
 
+  def save_post(self):
+    db.session.add(self)
+    db.session.commit()
 
 class Candidate(db.Model):
   '''
@@ -91,7 +97,9 @@ class Candidate(db.Model):
   win=db.Column(db.Boolean,default=False)
   votes=db.relationship('Vote',backref='candidate',lazy='dynamic')
 
-
+  def save_candidate(self):
+    db.session.add(self)
+    db.session.commit()
 
 class Vote(db.Model):
   '''
@@ -103,3 +111,7 @@ class Vote(db.Model):
   post_id=db.Column(db.Integer,db.ForeignKey('posts.id'))
   candidate_id=db.Column(db.Integer,db.ForeignKey('candidates.id'))
   status=db.Column(db.String(255),default="active")
+
+  def save_vote(self):
+    db.session.add(self)
+    db.session.commit()
