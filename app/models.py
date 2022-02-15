@@ -1,8 +1,6 @@
-from tracemalloc import start
-from turtle import title
 from app import db
 from flask_login import UserMixin
-import datetime
+from datetime import datetime
 from werkzeug.security import check_password_hash,generate_password_hash
 
 
@@ -62,7 +60,7 @@ class Election(db.Model):
   '''
   __tablename__='elections'
   id=db.Column(db.Integer,primary_key=True)
-  title=db.Column(db.String(255),primary_key=True)
+  title=db.Column(db.String(255))
   election_date=db.Column(db.Date)
   start_time=db.Column(db.Time)
   end_time=db.Column(db.Time)
@@ -76,7 +74,7 @@ class Post(db.Model):
   '''
   __tablename__='posts'
   id=db.Column(db.Integer,primary_key=True)
-  title=db.Column(db.String(255),primary_key=True)
+  title=db.Column(db.String(255))
   election_id=db.Column(db.Integer,db.ForeignKey('elections.id'))
   candidates=db.relationship('Candidate',backref='post',lazy='dynamic')
   votes=db.relationship('Candidate',backref='post',lazy='dynamic')

@@ -18,6 +18,8 @@ class DevConfig(Config):
   '''
   Development configuratiion child class
   '''
+  SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://moringa:1234@localhost/uwazi_poll'
+
   DEBUG=True
 
 class TestConfig(Config):
