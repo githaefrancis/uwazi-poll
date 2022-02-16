@@ -28,7 +28,7 @@ class RegistrationForm(FlaskForm):
 
 
 class StudentLoginForm(FlaskForm):
-  student_id=StringField('Your Student Id',validators=[InputRequired(),Email()])
+  student_id=StringField('Your Student Id',validators=[InputRequired()])
   password=PasswordField('Password',validators=[InputRequired()])
   submit=SubmitField('Sign In')
 
