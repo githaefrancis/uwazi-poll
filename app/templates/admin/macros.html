@@ -29,7 +29,7 @@
 
     <span> id: {{post.id}}</span>
     <span>{{post.title}}</span>
-    <a href="" class="manage"> Manage</a>
+    <a href="{{url_for('admin.post',election_id=post.election.id,post_id=post.id)}}" class="manage"> Manage</a>
   </div>
 </div>
 

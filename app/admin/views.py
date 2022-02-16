@@ -38,4 +38,9 @@ def election(id):
 
   return render_template('admin/election.html',election=election,post_form=post_form,posts=posts)
 
+@admin.route('/admin/post/election/<election_id>/post/<post_id>')
+def post(election_id,post_id):
+  post=Post.query.filter_by(id=post_id).first()
 
+  return render_template('admin/post.html',post=post)
+  
