@@ -26,7 +26,7 @@ class TestConfig(Config):
   '''
   Test configuration child class
   '''
-  SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://moringa:1234@localhost/uwazi_poll_test'
+  SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://moringa:faska12@localhost/uwazi_poll_test'
   
 
 config_options={
