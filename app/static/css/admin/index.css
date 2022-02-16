@@ -1,0 +1,35 @@
+.navbar,.sidebar{
+  background-color: #AE3D2B;;
+  color:white;
+}
+
+.navbar-brand{
+
+  color:white;
+  font-weight: bold;
+}
+.sidebar{
+  height:80vh;
+}
+
+.sidebar a{
+text-decoration: none;
+color: white;
+font-weight: bold;
+padding:2px
+}
+
+.sidebar a:hover{
+  background-color: white;
+  color:#190059
+}
+
+.sidebar a:active{
+  background-color: white;
+  color:#190059
+}
+
+.sidebar ul li{
+
+  margin-bottom:2em;
+}

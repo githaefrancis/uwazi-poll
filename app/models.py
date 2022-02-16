@@ -1,3 +1,4 @@
+from email.policy import default
 from app import db
 from flask_login import UserMixin
 from datetime import datetime
@@ -27,6 +28,8 @@ class User(UserMixin,db.Model):
   role_id=db.Column(db.Integer,db.ForeignKey("roles.id"))
   candidates=db.relationship('Candidate',backref='user',lazy='dynamic')
   votes=db.relationship('Vote',backref='user',lazy='dynamic')
+  student_id=db.Column(db.String(50),default=None,unique=True)
+  status=db.Column(db.String(50),default="active")
 
   @property
   def password(self):
