@@ -1,8 +1,8 @@
-"""add initial migration
+"""fix inital migration
 
-Revision ID: 7a3644154081
+Revision ID: 53fecc5a6476
 Revises: 
-Create Date: 2022-02-15 09:35:23.759449
+Create Date: 2022-02-16 13:50:01.231097
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7a3644154081'
+revision = '53fecc5a6476'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,8 +22,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=True),
     sa.Column('election_date', sa.Date(), nullable=True),
-    sa.Column('start_time', sa.Time(), nullable=True),
-    sa.Column('end_time', sa.Time(), nullable=True),
+    sa.Column('start_time', sa.DateTime(), nullable=True),
+    sa.Column('end_time', sa.DateTime(), nullable=True),
     sa.Column('active', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
@@ -49,8 +49,11 @@ def upgrade():
     sa.Column('profile_pic_path', sa.String(length=255), nullable=True),
     sa.Column('password_secure', sa.String(length=255), nullable=True),
     sa.Column('role_id', sa.Integer(), nullable=True),
+    sa.Column('student_id', sa.String(length=50), nullable=True),
+    sa.Column('status', sa.String(length=50), nullable=True),
     sa.ForeignKeyConstraint(['role_id'], ['roles.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('student_id')
     )
     op.create_table('candidates',
     sa.Column('id', sa.Integer(), nullable=False),
