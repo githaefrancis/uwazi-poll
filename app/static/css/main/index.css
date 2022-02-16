@@ -1,0 +1,71 @@
+body{
+   
+  }
+ 
+   .bg-co{
+   
+    background-color: #190059;
+  } 
+  .navbar-brand{
+      color: white;
+      font-weight: 600;
+      font-size: 1.5rem;
+  }
+ .nav-link{
+    color: white;
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  .navbar-brand:hover,.nav-link:hover{
+      color:#AE3D2B
+  }
+  #dash{
+    color: #AE3D2B;
+    margin-left: 4px;
+  }
+  #election{
+  color: #190059;
+  font-weight: 400;
+  }
+  
+
+  #act{
+    color: #AE3D2B; 
+    font-weight: 400;
+  }
+ 
+
+  .vote{
+    
+     border: 1px solid black;
+     border-radius: 3px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+   
+  }
+  .election-title{
+      
+      margin-left: -120px;
+  }
+
+  .cand{
+      margin-top: 40px;
+  }
+
+  .content-section{
+      display: flex;
+    align-items: center;
+    justify-content: start;
+      flex-direction: row;
+      margin: 10px;
+  }
+  .content-section,input,h4{
+      margin-left: 20px;
+  }
+  .view ol li{
+      padding: 13px;
+  }
+  
