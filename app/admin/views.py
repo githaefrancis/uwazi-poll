@@ -1,5 +1,6 @@
 from re import A
 from flask import redirect, render_template,request,url_for
+from flask_login import current_user, login_required
 from . import admin
 from .forms import ElectionForm, PostForm
 from ..models import Election, Post
@@ -7,6 +8,7 @@ from datetime import datetime
 
 
 @admin.route('/admin',methods=['GET','POST'])
+@login_required
 def admin_view():
   election_form=ElectionForm()
   elections=Election.query.order_by(Election.id.desc()).all()
@@ -23,6 +25,7 @@ def admin_view():
   return render_template('admin/admin.html',election_form=election_form,elections=elections)
 
 @admin.route('/admin/election/<id>/posts',methods=['GET','POST'])
+@login_required
 def election(id):
   election=Election.query.filter_by(id=id).first()
   post_form=PostForm()
@@ -39,7 +42,10 @@ def election(id):
   return render_template('admin/election.html',election=election,post_form=post_form,posts=posts)
 
 @admin.route('/admin/post/election/<election_id>/post/<post_id>')
+@login_required
 def post(election_id,post_id):
+  if current_user.role_id==1:
+    return redirect(url_for('main.index'))
   post=Post.query.filter_by(id=post_id).first()
 
   return render_template('admin/post.html',post=post)

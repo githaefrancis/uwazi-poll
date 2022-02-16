@@ -45,8 +45,12 @@ def register():
     student_id=register_form.student_id.data
     password_input=register_form.password.data
     user_role=Role.query.filter_by(name='User').first()
+    # user_role=Role.query.filter_by(name='Admin').first()
     user=User(name=name_input,email=email_input,password=password_input,role=user_role,student_id=student_id)
     user.save_user()
+    # admin=User(name=name_input,email=email_input,password=password_input,role=user_role)
+    # admin.save_user()
+    
     # mail_message("Welcome to Fluent Exchange","email/welcome",user.email,user=user)
     # flash('Registration Successful, Welcome','success')
     return redirect(url_for('auth.login'))
