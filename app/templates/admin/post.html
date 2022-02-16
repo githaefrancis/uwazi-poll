@@ -1,3 +1,16 @@
-<h1>Goooooo</h1>
+{% extends 'admin/base.html' %}
 
-{{end_time}}
+{% block content %}
+<h1>Election Details</h1>
+<div class="d-flex justify-content-between">
+<h4>{{election.title}}</h4>
+<h4>id: {{election.id}}</h4>
+<a class="btn">End</a>
+</div>
+<hr>
+
+<h1>Posts</h1>
+
+
+
+{% endblock %}

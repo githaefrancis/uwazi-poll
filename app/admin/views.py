@@ -1,3 +1,4 @@
+from re import A
 from flask import redirect, render_template,request
 from . import admin
 from .forms import ElectionForm
@@ -6,7 +7,7 @@ from datetime import datetime
 
 
 @admin.route('/admin',methods=['GET','POST'])
-def admin():
+def admin_view():
   election_form=ElectionForm()
   elections=Election.query.order_by(Election.id.desc()).all()
   if request.method=='POST':
@@ -20,3 +21,9 @@ def admin():
       return redirect(request.referrer)
 
   return render_template('admin/admin.html',election_form=election_form,elections=elections)
+
+@admin.route('/admin/election/<id>/posts')
+def post(id):
+  election=Election.query.filter_by(id=id).first()
+
+  return render_template('admin/post.html',election=election)

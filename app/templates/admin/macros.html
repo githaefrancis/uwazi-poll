@@ -7,7 +7,7 @@
 
     <span> id: {{election.id}}</span>
 
-    <a href="" class="manage"> Manage</a>
+    <a href="{{url_for('admin.post',id=election.id)}}" class="manage"> Manage</a>
   </div>
 </div>
 
@@ -17,4 +17,13 @@
 <p>No elections yet</p>
 
 {%endif%}
+{% endmacro %}
+
+{% macro displayPosts(posts_list) %}
+
+{% for post in posts_list %}
+
+
+{% endfor %}
+
 {% endmacro %}

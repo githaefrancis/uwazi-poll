@@ -3,7 +3,7 @@
 {% import 'admin/macros.html' as macro %}
 {% block content %}
 
-<form action="{{url_for('admin.admin')}}" method="POST">
+<form action="{{url_for('admin.admin_view')}}" method="POST">
 
   {{election_form.hidden_tag()}}
   {{wtf.form_errors(election_form,hiddens="only")}}

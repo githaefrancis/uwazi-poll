@@ -13,3 +13,7 @@ class ElectionForm(FlaskForm):
   end_time=DateTimeLocalField('Endtime',format='%Y-%m-%dT%H:%M')
   
   submit=SubmitField('Create')
+
+class PostForm(FlaskForm):
+  title=StringField('Title')
+  submit=SubmitField('Create')
