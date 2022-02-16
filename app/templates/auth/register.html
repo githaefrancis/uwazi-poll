@@ -1,0 +1,15 @@
+{% extends 'auth/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% include 'auth/navbar.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center">
+  <div class="card col-lg-6 col-12 p-lg-3 p-2 mt-4 shadow border-0">
+    <h3 class="center">Register</h3>
+    {{wtf.quick_form(register_form)}}
+    <p>Already have an account?   <a href="{{url_for('auth.login')}}">Sign in</a></p>
+  </div>
+</div>
+
+{% endblock %}

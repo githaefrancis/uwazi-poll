@@ -1,0 +1,15 @@
+.navbar,.sidebar{
+  background-color: #190059;
+  color:white;
+}
+
+.navbar-brand{
+
+  color:white;
+  font-weight: bold;
+}
+
+.navbar#admin{
+  background-color: #AE3D2B;
+  color:white;
+}
