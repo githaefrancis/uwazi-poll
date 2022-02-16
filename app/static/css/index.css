@@ -1,0 +1,22 @@
+.homepage-header{
+  min-height: 100vh;
+  max-height: 100vh;
+  /* background-color: #FEFEFC; */
+  background-image: url('/static/asset-images/background.png');
+  background-size: contain;
+  background-position: center;
+
+}
+
+.poll-title{
+  color:#190059;
+}
+
+.uwazi-title{
+  color:#AE3D2B;
+}
+
+.login-options{
+  margin-top:20%;
+  transform: translate(0,-50%);
+}
