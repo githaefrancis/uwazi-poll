@@ -1,0 +1,40 @@
+{% extends '_default.html' %}
+
+<!-- main  -->
+{% block content %}
+<form action="" method="POST">
+    {{ form.hidden_tag() }}
+    <fieldset>
+        <legend>Enroll with Us</legend>
+        <div class="form-group">
+            <div class="form-group">
+                {{form.username.label(class='form-control-label')}}
+                <!-- input  -->
+                {{form.username(class='form-control form-control-lg')}}
+            </div>
+            <div class="form-group">
+                {{form.email.label(class='form-control-label')}}
+                <!-- input  -->
+                {{form.email(class='form-control form-control-lg')}}
+            </div>
+            <div class="form-group">
+                {{form.password.label(class='form-control-label')}}
+                <!-- input  -->
+                {{form.password(class='form-control form-control-lg')}}
+            </div>
+            <div class="form-group">
+                {{form.confirm_password.label(class='form-control-label')}}
+                <!-- input  -->
+                {{form.confirm_password(class='form-control form-control-lg')}}
+            </div>
+        </div>
+    </fieldset>
+    <div class="form-group">
+        {{form.submit(class='btn btn-outline-info')}}
+    </div>
+</form>
+<div class="border-top pt-3">
+    <small class="text-muted">Have an Account? <a href="{{url_for('login')}}" class="ml-2">LogIn</a></small>
+</div>
+<!-- link to loginPage  -->
+{% endblock content%}

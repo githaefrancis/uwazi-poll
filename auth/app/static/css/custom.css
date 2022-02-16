@@ -1,0 +1,68 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary_color: #0dcaf0;
+}
+
+.btn-outline-info {
+    color: var(--primary_color);
+    border-color: var(--primary_color);
+    outline: none;
+    margin: 1.2rem 0;
+}
+
+.btn-outline-info:hover {
+    background-color: var(--primary_color);
+    color: #fff;
+}
+
+form-control-lg {
+    min-height: calc(1.5em + 1rem + 2px);
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    border-radius: 0.3rem;
+}
+
+
+/* making a navar on the side  */
+
+.form-control {
+    margin: 1rem 0;
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+}
+
+small {
+    padding: 1rem 0;
+    font-size: 1rem;
+}
+
+.navbar-light .navbar-brand {
+    color: rgba(0, 0, 0, .9);
+}
+
+.navbar-brand {
+    /* float: left; */
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 40rem;
+    font-size: 1.25rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
