@@ -7,7 +7,7 @@
 
     <span> id: {{election.id}}</span>
 
-    <a href="{{url_for('admin.post',id=election.id)}}" class="manage"> Manage</a>
+    <a href="{{url_for('admin.election',id=election.id)}}" class="manage"> Manage</a>
   </div>
 </div>
 
@@ -19,11 +19,25 @@
 {%endif%}
 {% endmacro %}
 
-{% macro displayPosts(posts_list) %}
+{% macro displayPosts(post_list) %}
 
-{% for post in posts_list %}
+{% if post_list%}
+{% for post in post_list %}
+<div class="card mb-3">
+  
+  <div class="election d-flex justify-content-between p-3">
 
+    <span> id: {{post.id}}</span>
+    <span>{{post.title}}</span>
+    <a href="" class="manage"> Manage</a>
+  </div>
+</div>
 
 {% endfor %}
+
+{%else%}
+<p>No posts yet</p>
+
+{%endif%}
 
 {% endmacro %}
