@@ -1,10 +1,10 @@
 from flask import render_template,request,redirect,url_for,flash
 from flask_login import current_user,login_required
-from app.models import User
+from app.models import Election, User
 from . import main
 from werkzeug.utils import secure_filename
 import os
-from ..request import get_elections, get_posts_count_for_all_elections
+from ..request import get_elections, get_posts_count_for_all_elections,get_candidates_for_all_posts_per_election, get_posts_per_election
 
 
 ALLOWED_EXTENSIONS={'png','jpg','jpeg','gif'}
@@ -26,7 +26,10 @@ def home():
 
 @main.route('/election/<id>/vote')
 def vote(id):
-  return render_template('main/vote.html')
+  election=Election.query.filter_by(id=id).first()
+  posts=get_posts_per_election(id)
+  all_candidates=get_candidates_for_all_posts_per_election(id)
+  return render_template('main/vote.html',election=election,all_candidates=all_candidates,posts=posts)
 
 
 def allowed_file(filename):

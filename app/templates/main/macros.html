@@ -26,9 +26,57 @@
 {%endif%}
 {% endmacro %}
 
-{%macro displayPostCard(post_list) %}
+{%macro displayPostCard(election,post_list,candidate_dict) %}
 
 {% for post in post_list %}
+{% if post.election.status=='closed' %}
+<div class="col-lg-6">
+  <div class="card mb-3">
+
+    <h2 class="d-flex justify-content-around"><span>Post Title</span>  <span>Winner: <span class="text-success"> Name</span></span> </h2>
+    <div class="d-flex justify-content-around my-2 p-3">
+      {% for candidate in candidate_dict[post.id] %}
+      <span><img src="{{url_for('static',filename='asset-images/vote_icon.png')}}" alt=""></span>
+
+      <span>{{candidate.name}}</span>
+
+      <span> n Votes </span>
+
+      {% endfor %}
+    </div>
+
+  </div>
+
+</div>
+
+{% elif post.election.status=='open' %}
+
+<div class="col-lg-6">
+  <div class="card mb-3">
+
+    <h2>{{post.title}}</h2>
+
+      {% for candidate in candidate_dict[post.id] %}
+    <div class="d-flex justify-content-around align-items-center my-2 p-3">
+      
+      <span><img src="{{url_for('static',filename='asset-images/vote_icon.png')}}" height="48" alt=""></span>
+
+      <span>{{candidate.user.name}}</span>
+
+      <span> <a href="" class="btn btn-secondary">Vote </a> </span>
+
+    </div>
+      {% endfor %}
+      
+    
+
+  </div>
+
+</div>
+
+
+{% endif %}
+
 
 
 

@@ -30,6 +30,15 @@ def get_candidates_per_post(id):
 
   return Candidate.query.filter_by(post_id=id).all()
 
+def get_candidates_for_all_posts_per_election(id):
+  candidates_dict={}
+  posts=get_posts_per_election(id)
+  for post in posts:
+    candidates_list=get_candidates_per_post(post.id)
+    candidates_dict[post.id]=candidates_list
+
+  return candidates_dict
+
 def get_votes_for_candidate_count_per_post(id):
   
   '''
@@ -43,6 +52,8 @@ def get_votes_for_candidate_count_per_post(id):
     votes_dict[candidate.id]=vote_count
 
   return votes_dict
+
+
 
 def get_posts_count_for_all_elections():
   '''
@@ -79,14 +90,16 @@ def has_voted(voter_id,post_id):
 
 def get_the_winner_in_a_post(post_id):
   votes=get_votes_for_candidate_count_per_post(post_id)
-  highest_vote_candidate_id=max(votes,key=votes.get)
-  if votes[highest_vote_candidate_id]>0:
-    candidate=Candidate.query.filter_by(id=highest_vote_candidate_id).first()
-    return candidate.user.name
+  if votes:
+    highest_vote_candidate_id=max(votes,key=votes.get)
+    if votes[highest_vote_candidate_id]>0:
+      candidate=Candidate.query.filter_by(id=highest_vote_candidate_id).first()
+      return candidate.user.name
 
+    else:
+      return None
   else:
-    return None
-  
+     return None
 def get_all_election_winners(election_id):
   all_election_winners={}
   all_posts=get_posts_per_election(election_id)
