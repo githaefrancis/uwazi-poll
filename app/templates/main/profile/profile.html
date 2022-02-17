@@ -16,7 +16,14 @@
           <p>Student Id:{{current_user.student_id}}</p>
           {%endif%}
         </div>
+        {% if current_user.profile_pic_path %}
         <div class="col-lg-6"><img src="{{url_for('static',filename=current_user.profile_pic_path)}}" alt="" class="img-fluid"></div>
+        {% else %}
+        <div class="col-lg-6"><img src="{{url_for('static',filename='photos/avatar.png')}}" alt="" class="img-fluid"></div>
+
+        
+        {% endif %}
+
       </div>
     </div>
   </div>

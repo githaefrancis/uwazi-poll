@@ -6,7 +6,9 @@
 <div class="d-flex justify-content-between">
 <h4>{{election.title}}</h4>
 <h4>id: {{election.id}}</h4>
-<a class="btn">End</a>
+
+<h4 class="badge bg-secondary">Status: {{election.status}}</h4>
+<a href="{{url_for('admin.close_election',id=election.id)}}" class="btn btn-danger">Close Voting</a>
 </div>
 <hr>
 

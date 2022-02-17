@@ -11,14 +11,19 @@ ALLOWED_EXTENSIONS={'png','jpg','jpeg','gif'}
 
 @main.route('/')
 def index():
-  return render_template('main/index.html')
-
+  if current_user.is_authenticated and current_user.role_id==2:
+    return redirect(url_for('admin.admin_view')) 
+  elif current_user.is_authenticated and current_user.role_id==1:
+    return redirect(url_for('main.home'))
+  else:
+    return render_template('main/index.html')
 
 @main.route('/student')
 def student():
   return render_template('main/student.html',title='Student')  
 
 @main.route('/home')
+@login_required
 def home():
   election_list=get_elections()
   post_count=get_posts_count_for_all_elections()

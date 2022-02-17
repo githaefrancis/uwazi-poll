@@ -98,6 +98,9 @@ def has_voted_all_posts(voter_id,election_id):
 
 def get_the_winner_in_a_post(post_id):
   votes=get_votes_for_candidate_count_per_post(post_id)
+  post=Post.query.filter_by(id=post_id).first()
+  if post.election.status=='open':
+    return None
   if votes:
     highest_vote_candidate_id=max(votes,key=votes.get)
     if votes[highest_vote_candidate_id]>0:

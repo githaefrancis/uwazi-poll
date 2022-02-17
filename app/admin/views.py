@@ -1,6 +1,8 @@
 from re import A
 from flask import redirect, render_template,request,url_for
 from flask_login import current_user, login_required
+
+from app.main.views import student
 from . import admin
 from .forms import ElectionForm, PostForm
 from ..models import Candidate, Election, Post,User
@@ -90,3 +92,14 @@ def candidate_remove(election_id,post_id,candidate_id):
 
   return redirect(url_for('admin.post',election_id=election_id,post_id=post_id))
 
+@admin.route('/election/<id>/close')
+def close_election(id):
+  target_election=Election.query.filter_by(id=id).first()
+  target_election.status="closed"
+  target_election.save_election()
+  return redirect(request.referrer)
+
+@admin.route('/voters')
+def voters():
+  students=User.query.filter_by(role_id=1).all()
+  return render_template('admin/voters.html',students=students)

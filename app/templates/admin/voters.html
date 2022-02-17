@@ -1,0 +1,9 @@
+{%extends 'admin/base.html'%}
+{% import 'admin/macros.html' as macro %}
+{% block content %}
+<h1>Voters</h1>
+<hr>
+
+{{ macro.displayStudents(students) }}
+
+{% endblock %}
