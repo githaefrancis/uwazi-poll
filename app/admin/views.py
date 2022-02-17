@@ -10,6 +10,8 @@ from datetime import datetime
 @admin.route('/admin',methods=['GET','POST'])
 @login_required
 def admin_view():
+  if current_user.is_authenticated and current_user.role_id==1:
+     return redirect(url_for('main.student'))
   election_form=ElectionForm()
   elections=Election.query.order_by(Election.id.desc()).all()
   if request.method=='POST':
@@ -27,6 +29,8 @@ def admin_view():
 @admin.route('/admin/election/<id>/posts',methods=['GET','POST'])
 @login_required
 def election(id):
+  if current_user.is_authenticated and current_user.role_id==1:
+     return redirect(url_for('main.student'))
   election=Election.query.filter_by(id=id).first()
   post_form=PostForm()
   posts=Post.query.filter_by(election=election).all()
@@ -44,8 +48,8 @@ def election(id):
 @admin.route('/admin/post/election/<election_id>/post/<post_id>')
 @login_required
 def post(election_id,post_id):
-  if current_user.role_id==1:
-    return redirect(url_for('main.index'))
+  if current_user.is_authenticated and current_user.role_id==1:
+     return redirect(url_for('main.student'))
   post=Post.query.filter_by(id=post_id).first()
   students=User.query.filter_by(role_id=1).all()
   candidates=Candidate.query.filter_by(post_id=post_id).all()
@@ -56,6 +60,8 @@ def post(election_id,post_id):
 @admin.route('/admin/post/election/<election_id>/post/<post_id>/candidate/<user_id>')
 @login_required
 def add_candidate(election_id,post_id,user_id):
+  if current_user.is_authenticated and current_user.role_id==1:
+     return redirect(url_for('main.student'))
   target_post=Post.query.filter_by(id=post_id).first()
   target_user=User.query.filter_by(id=user_id).first()
 
@@ -72,6 +78,8 @@ def add_candidate(election_id,post_id,user_id):
 @admin.route('/admin/post/election/<election_id>/post/<post_id>/candidate/<candidate_id>/remove')
 @login_required
 def candidate_remove(election_id,post_id,candidate_id):
+  if current_user.is_authenticated and current_user.role_id==1:
+     return redirect(url_for('main.student'))
   target_candidate=Candidate.query.filter_by(id=candidate_id).first()
   if target_candidate:
     target_candidate.remove_candidate()
