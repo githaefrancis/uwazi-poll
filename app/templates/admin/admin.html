@@ -8,7 +8,7 @@
   {{election_form.hidden_tag()}}
   {{wtf.form_errors(election_form,hiddens="only")}}
   {{wtf.form_field(election_form.title)}}
-  <div class="d-flex p-3">
+  <div class="d-flex p-3 align-items-center">
   <div class="m-3">{{wtf.form_field(election_form.start_time)}}</div>
   <div class="m-3">{{wtf.form_field(election_form.end_time)}}  </div>
     {{wtf.form_field(election_form.submit)}}
