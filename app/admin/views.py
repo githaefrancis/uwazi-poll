@@ -90,3 +90,9 @@ def candidate_remove(election_id,post_id,candidate_id):
 
   return redirect(url_for('admin.post',election_id=election_id,post_id=post_id))
 
+@admin.route('/election/<id>/close')
+def close_election(id):
+  target_election=Election.query.filter_by(id=id).first()
+  target_election.status="closed"
+  target_election.save_election()
+  return redirect(request.referrer)
