@@ -4,9 +4,6 @@ from sqlalchemy import true
 from .models import User,Role,Election,Post,Candidate,Vote
 
 
-
-
-
 def get_elections():
   electionslist=Election.query.all()
   print(electionslist)
