@@ -37,7 +37,7 @@ def get_votes_for_candidate_count_per_post(id):
   '''
   
   votes_dict={}
-  candidates=Candidate.query.filter_by(post_id=id).query.all()
+  candidates=Candidate.query.filter_by(post_id=id).all()
   for candidate in candidates:
     vote_count=len(Vote.query.filter_by(post_id=id,candidate_id=candidate.id).all())
     votes_dict[candidate.id]=vote_count
@@ -62,3 +62,22 @@ def has_voted(voter_id,post_id):
     return True
   else:
     return False
+
+def get_the_winner_in_a_post(post_id):
+  votes=get_votes_for_candidate_count_per_post(post_id)
+  highest_vote_candidate_id=max(votes,key=votes.get)
+  if votes[highest_vote_candidate_id]>0:
+    candidate=Candidate.query.filter_by(id=highest_vote_candidate_id).first()
+    return candidate.user.name
+
+  else:
+    return None
+  
+def get_all_election_winners(election_id):
+  all_election_winners={}
+  all_posts=get_posts_per_election(election_id)
+  for post in all_posts:
+    all_election_winners[post.id]=get_the_winner_in_a_post(post.id)
+
+  return all_election_winners
+

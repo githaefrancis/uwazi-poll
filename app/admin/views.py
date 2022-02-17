@@ -5,7 +5,7 @@ from . import admin
 from .forms import ElectionForm, PostForm
 from ..models import Candidate, Election, Post,User
 from datetime import datetime
-from ..request import get_elections
+from ..request import get_all_election_winners, get_elections,get_votes_for_candidate_count_per_post,vote_for_candidate,get_the_winner_in_a_post
 
 @admin.route('/admin',methods=['GET','POST'])
 @login_required
@@ -34,7 +34,7 @@ def election(id):
   election=Election.query.filter_by(id=id).first()
   post_form=PostForm()
   posts=Post.query.filter_by(election=election).all()
-
+  all_winners=get_all_election_winners(id)
   if request.method=='POST':
     if post_form.validate_on_submit():
       title=post_form.title.data
@@ -43,7 +43,7 @@ def election(id):
       return redirect(request.referrer)
 
 
-  return render_template('admin/election.html',election=election,post_form=post_form,posts=posts)
+  return render_template('admin/election.html',election=election,post_form=post_form,posts=posts,all_winners=all_winners)
 
 @admin.route('/admin/post/election/<election_id>/post/<post_id>')
 @login_required
@@ -53,8 +53,12 @@ def post(election_id,post_id):
   post=Post.query.filter_by(id=post_id).first()
   students=User.query.filter_by(role_id=1).all()
   candidates=Candidate.query.filter_by(post_id=post_id).all()
+  vote_count=get_votes_for_candidate_count_per_post(post_id)
+  winner=get_the_winner_in_a_post(post_id)
+  # vote_for_candidate(1,2,9)
+
   get_elections()
-  return render_template('admin/post.html',post=post,students=students,candidates=candidates,election_id=election_id)
+  return render_template('admin/post.html',post=post,students=students,candidates=candidates,election_id=election_id,vote_count=vote_count,winner=winner)
 
 
 @admin.route('/admin/post/election/<election_id>/post/<post_id>/candidate/<user_id>')

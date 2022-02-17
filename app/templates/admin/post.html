@@ -5,11 +5,12 @@
 <h4>Post: {{post.title}} </h4>
 <h4> Election: {{post.election.title}} election</h4>
 <h5>Date: {{post.election.start_time}}</h5>
+<h5>winner: <span class="text-success"> {{winner or 'Pending'}}</span></h5>
 
 <hr>
 
 <h1>Candidates</h1>
-{{macro.displayCandidates(candidates,post,election_id)}}
+{{macro.displayCandidates(candidates,post,election_id,vote_count)}}
 <hr>
 
 <h1>Students</h1>
