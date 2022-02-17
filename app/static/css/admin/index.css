@@ -33,3 +33,6 @@ padding:2px
 
   margin-bottom:2em;
 }
+.main{
+  min-height:60vh;
+}
