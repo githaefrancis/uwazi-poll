@@ -8,13 +8,13 @@ from ..models import User,Role
 def login():
   login_form=StudentLoginForm()
   if current_user.is_authenticated and current_user.role_id==1:
-    return redirect(url_for('main.student'))
+    return redirect(url_for('main.home'))
   if login_form.validate_on_submit():
     user=User.query.filter_by(student_id=login_form.student_id.data).first()
     if user is not None and user.verify_password(login_form.password.data):
       login_user(user)
       flash(f'Welcome, {user.username}','success')
-      return redirect(request.args.get('next') or url_for('main.student'))
+      return redirect(request.args.get('next') or url_for('main.home'))
     flash('Invalid username or password','error')
 
 
@@ -26,9 +26,11 @@ def admin_login():
   login_form=AdminLoginForm()
 
   if current_user.is_authenticated and current_user.role_id==2:
+    
     return redirect(url_for('admin.admin_view'))
   elif current_user.is_authenticated and current_user.role_id==1:
-     return redirect(url_for('main.student'))
+     logout_user()
+     return redirect(url_for('auth.admin_login'))
     
   if login_form.validate_on_submit():
     user=User.query.filter_by(email=login_form.email.data).first()

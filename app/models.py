@@ -72,6 +72,7 @@ class Election(db.Model):
   start_time=db.Column(db.DateTime)
   end_time=db.Column(db.DateTime)
   active=db.Column(db.Boolean,default=False)
+  status=db.Column(db.String(50),default="open")
   posts=db.relationship('Post',backref="election",lazy='dynamic')
   
   def save_election(self):

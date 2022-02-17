@@ -1,0 +1,100 @@
+{% macro displayElections(election_list,post_count) %}
+
+{% if election_list %}
+
+{% for election in election_list%}
+<div class="card m-5 shadow border-0">
+
+  <div class="d-flex justify-content-around m-3 p-3">
+    <span>Start Time: {{election.start_time}}</span> 
+    <span>End Time: {{election.end_time}}</span></div>
+
+    <div class="d-flex justify-content-around align-items-center m-5 p-3">
+      <span># {{election.id}}</span> 
+      <span>Title: {{election.title}}</span> 
+      
+      <span>Posts: {{post_count[election.id] or 0}} </span>
+      <span><a href="{{url_for('main.vote',id=election.id)}}" class="btn btn-secondary">Vote</a></span>
+    </div>
+</div>
+
+{% endfor %}
+{% else %}
+<p>Oops, it's not election season yet! Hold your horse.</p>
+
+
+{%endif%}
+{% endmacro %}
+
+{%macro displayPostCard(election,post_list,candidate_dict,vote_status_dict) %}
+
+{% for post in post_list %}
+{% if post.election.status=='closed' %}
+<div class="col-lg-6">
+  <div class="card mb-3">
+
+    <h2 class="d-flex justify-content-around"><span>Post Title</span>  <span>Winner: <span class="text-success"> Name</span></span> </h2>
+    <div class="d-flex justify-content-around my-2 p-3">
+      {% for candidate in candidate_dict[post.id] %}
+      <span><img src="{{url_for('static',filename='asset-images/vote_icon.png')}}" alt=""></span>
+
+      <span>{{candidate.name}}</span>
+
+      <span> n Votes </span>
+
+      {% endfor %}
+    </div>
+
+  </div>
+
+</div>
+
+{% elif post.election.status=='open' %}
+
+{% if not vote_status_dict[post.id] %}
+
+<div class="col-lg-6">
+  <div class="card mb-3">
+
+    <h2>{{post.title}}</h2>
+
+      {% for candidate in candidate_dict[post.id] %}
+    <div class="d-flex justify-content-around align-items-center my-2 p-3">
+      
+      <span><img src="{{url_for('static',filename='asset-images/vote_icon.png')}}" height="48" alt=""></span>
+
+      <span>{{candidate.user.name}}</span>
+
+      <span> <a href="{{url_for('main.cast_vote',id=post.election.id,post_id=post.id,candidate_id=candidate.id)}}" class="btn btn-secondary">Vote </a> </span>
+
+    </div>
+      {% endfor %}
+      
+    
+
+  </div>
+
+</div>
+{% else%}
+
+<div class="col-lg-6">
+  <div class="card">
+
+    <h2 class="d-flex justify-content-center">{{post.title}}</h2>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+    <p>You have voted for this post.</p>
+
+    <p>Status: <span class="badge bg-secondary"> Pending Announcement</span></p>
+  </div>
+  </div>
+
+</div>
+
+{% endif %}
+
+{% endif %}
+
+
+{% endfor %}
+
+{% endmacro %}

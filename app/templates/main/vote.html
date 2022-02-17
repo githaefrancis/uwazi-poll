@@ -1,0 +1,23 @@
+{% extends 'auth/base.html' %}
+{% import 'main/macros.html' as macro %}
+{% block nav %}
+{% include 'auth/navbar.html' %}
+{% endblock %}
+{% block content %}
+
+<div class="container">
+  <h4 class="p-4">{{election.title}} Election <span class="bg-dark text-white p-2">{{election.start_time}}</span> - <span class="bg-dark text-white p-2">{{election.end_time}}</span></h4>
+  <h1 class="text-center"><span id="act"> Posts</span>&nbsp<span id="election">List</span><img src="{{url_for('static',filename='asset-images/hand-voting-ballot-box-icon-260nw-1342666157.jpg')}}" style="height: 50px; width:50px;"></h1>
+
+<div class="row">
+
+  
+{{macro.displayPostCard(election,posts,all_candidates,vote_status)}}
+
+
+</div>
+
+</div>
+
+{% endblock %}
+
