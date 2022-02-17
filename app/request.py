@@ -88,6 +88,14 @@ def has_voted(voter_id,post_id):
   else:
     return False
 
+def has_voted_all_posts(voter_id,election_id):
+  vote_status_dict={}
+  posts=get_posts_per_election(election_id)
+  for post in posts:
+    status=has_voted(voter_id,post.id)
+    vote_status_dict[post.id]=status
+  return vote_status_dict
+
 def get_the_winner_in_a_post(post_id):
   votes=get_votes_for_candidate_count_per_post(post_id)
   if votes:

@@ -26,7 +26,7 @@
 {%endif%}
 {% endmacro %}
 
-{%macro displayPostCard(election,post_list,candidate_dict) %}
+{%macro displayPostCard(election,post_list,candidate_dict,vote_status_dict) %}
 
 {% for post in post_list %}
 {% if post.election.status=='closed' %}
@@ -51,6 +51,8 @@
 
 {% elif post.election.status=='open' %}
 
+{% if not vote_status_dict[post.id] %}
+
 <div class="col-lg-6">
   <div class="card mb-3">
 
@@ -63,7 +65,7 @@
 
       <span>{{candidate.user.name}}</span>
 
-      <span> <a href="" class="btn btn-secondary">Vote </a> </span>
+      <span> <a href="{{url_for('main.cast_vote',id=post.election.id,post_id=post.id,candidate_id=candidate.id)}}" class="btn btn-secondary">Vote </a> </span>
 
     </div>
       {% endfor %}
@@ -73,11 +75,24 @@
   </div>
 
 </div>
+{% else%}
 
+<div class="col-lg-6">
+  <div class="card">
+
+    <h2 class="d-flex justify-content-center">{{post.title}}</h2>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+    <p>You have voted for this post.</p>
+
+    <p>Status: <span class="badge bg-secondary"> Pending Announcement</span></p>
+  </div>
+  </div>
+
+</div>
 
 {% endif %}
 
-
+{% endif %}
 
 
 {% endfor %}
