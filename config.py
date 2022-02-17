@@ -12,7 +12,9 @@ class ProdConfig(Config):
   '''
   Production configuration child class
   '''
-  pass
+  SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
+  
+  # pass
 
 class DevConfig(Config):
   '''
