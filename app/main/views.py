@@ -24,8 +24,8 @@ def home():
   post_count=get_posts_count_for_all_elections()
   return render_template('main/home.html',election_list=election_list,post_count=post_count)
 
-main.route('/election/<id>/vote')
-def vote():
+@main.route('/election/<id>/vote')
+def vote(id):
   return render_template('main/vote.html')
 
 

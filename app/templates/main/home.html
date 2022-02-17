@@ -6,7 +6,7 @@
 {% block content %}
 
 <div class="container">
-  <h1 class="text-center"><span id="act">Active</span>&nbsp<span id="election">Election</span><img src="../static/asset-images/hand-voting-ballot-box-icon-260nw-1342666157.jpg" style="height: 50px; width:50px;"></h1>
+  <h1 class="text-center"><span id="act">Active</span>&nbsp<span id="election">Election</span><img src="{{url_for('static',filename='asset-images/hand-voting-ballot-box-icon-260nw-1342666157.jpg')}}" style="height: 50px; width:50px;"></h1>
 
 
 {{macro.displayElections(election_list,post_count)}}

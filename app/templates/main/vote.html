@@ -1,0 +1,78 @@
+{% extends 'auth/base.html' %}
+{% import 'main/macros.html' as macro %}
+{% block nav %}
+{% include 'auth/navbar.html' %}
+{% endblock %}
+{% block content %}
+
+<div class="container">
+  <h1 class="text-center"><span id="act">Posts</span>&nbsp<span id="election">List</span><img src="{{url_for('static',filename='asset-images/hand-voting-ballot-box-icon-260nw-1342666157.jpg')}}" style="height: 50px; width:50px;"></h1>
+
+<div class="row">
+
+  <div class="col-lg-6">
+    <div class="card">
+
+      Post1
+    </div>
+
+  </div>
+<!-- Active voting -->
+  <div class="col-lg-6">
+    <div class="card mb-3">
+
+      <h2>Post Title</h2>
+      <div class="d-flex justify-content-around my-2 p-3">
+
+        <span>img</span>
+
+        <span>Name</span>
+
+        <span> <a href="" class="btn btn-secondary">Vote </a> </span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- waiting -->
+  <div class="col-lg-6">
+    <div class="card">
+
+      <h2 class="d-flex justify-content-center">Post Title</h2>
+      <div class="d-flex justify-content-center align-items-center">
+      <p>You voted for : Name</p>
+
+      <p>Status: Pending Announcement</p>
+    </div>
+    </div>
+
+  </div>
+
+  <!-- Results -->
+  <div class="col-lg-6">
+    <div class="card mb-3">
+
+      <h2 class="d-flex justify-content-around"><span>Post Title</span>  <span>Winner: <span class="text-success"> Name</span></span> </h2>
+      <div class="d-flex justify-content-around my-2 p-3">
+
+        <span>img</span>
+
+        <span>Name</span>
+
+        <span> n Votes </span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+</div>
+
+</div>
+
+{% endblock %}
+

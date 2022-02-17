@@ -14,7 +14,7 @@
       <span>Title: {{election.title}}</span> 
       
       <span>Posts: {{post_count[election.id] or 0}} </span>
-      <span><a href="" class="btn btn-secondary">Vote</a></span>
+      <span><a href="{{url_for('main.vote',id=election.id)}}" class="btn btn-secondary">Vote</a></span>
     </div>
 </div>
 
@@ -24,4 +24,14 @@
 
 
 {%endif%}
+{% endmacro %}
+
+{%macro displayPostCard(post_list) %}
+
+{% for post in post_list %}
+
+
+
+{% endfor %}
+
 {% endmacro %}
