@@ -108,6 +108,10 @@ class Candidate(db.Model):
     db.session.add(self)
     db.session.commit()
 
+  def remove_candidate(self):
+    db.session.delete(self)
+    db.session.commit()
+
 class Vote(db.Model):
   '''
   Vote class that defines the Vote model

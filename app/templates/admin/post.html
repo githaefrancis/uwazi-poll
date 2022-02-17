@@ -1,5 +1,5 @@
 {%extends 'admin/base.html'%}
-
+{% import 'admin/macros.html' as macro %}
 {% block content %}
 <h1>Single Post Page</h1>
 <h4>Post: {{post.title}} </h4>
@@ -9,9 +9,10 @@
 <hr>
 
 <h1>Candidates</h1>
-
+{{macro.displayCandidates(candidates,post,election_id)}}
 <hr>
 
 <h1>Students</h1>
+{{ macro.displayPersons(students,post,election_id) }}
 
 {% endblock %}
