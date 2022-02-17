@@ -1,71 +1,158 @@
-body{
-   
-  }
- 
-   .bg-co{
-   
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.bg-co {
     background-color: #190059;
-  } 
-  .navbar-brand{
-      color: white;
-      font-weight: 600;
-      font-size: 1.5rem;
-  }
- .nav-link{
+}
+
+.navbar-brand {
     color: white;
     font-weight: 600;
     font-size: 1.5rem;
-  }
+}
 
-  .navbar-brand:hover,.nav-link:hover{
-      color:#AE3D2B
-  }
-  #dash{
+.nav-link {
+    color: white;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.navbar-brand:hover,
+.nav-link:hover {
+    color: #AE3D2B
+}
+
+#dash {
     color: #AE3D2B;
     margin-left: 4px;
-  }
-  #election{
-  color: #190059;
-  font-weight: 400;
-  }
-  
+}
 
-  #act{
-    color: #AE3D2B; 
+#election {
+    color: #190059;
     font-weight: 400;
-  }
- 
+}
 
-  .vote{
-    
-     border: 1px solid black;
-     border-radius: 3px;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     flex-direction: column;
-   
-  }
-  .election-title{
-      
-      margin-left: -120px;
-  }
+#act {
+    color: #AE3D2B;
+    font-weight: 400;
+}
 
-  .cand{
-      margin-top: 40px;
-  }
+.election-title {
+    margin-left: -120px;
+}
 
-  .content-section{
-      display: flex;
+.cand {
+    margin-top: 40px;
+}
+
+.content-section {
+    display: flex;
     align-items: center;
     justify-content: start;
-      flex-direction: row;
-      margin: 10px;
-  }
-  .content-section,input,h4{
-      margin-left: 20px;
-  }
-  .view ol li{
-      padding: 13px;
-  }
-  
+    flex-direction: row;
+    margin: 10px;
+}
+
+.content-section,
+input,
+h4 {
+    margin-left: 20px;
+}
+
+.view ol li {
+    padding: 13px;
+}
+
+
+/* STUDENT DASHBOARD STYLES */
+
+
+/* Active elections View  */
+
+.ele-cont {
+    margin-top: 3rem;
+}
+
+.ele-cont h1 {
+    font-size: 3rem;
+    font-weight: 500;
+    letter-spacing: .2rem;
+    text-align: center;
+    padding: 0 0 5rem 0;
+}
+
+.vote {
+    border: 1px solid #eee;
+    padding: 2rem 1rem;
+    border-radius: 1.5rem;
+}
+
+.elect {
+    align-items: center;
+    padding: 1rem;
+}
+
+.elect h2 {
+    cursor: pointer;
+    font-size: 1.8rem;
+    letter-spacing: .1rem;
+}
+
+.elect button {
+    padding: .5rem 3rem;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    font-size: 1rem;
+    letter-spacing: .1rem;
+}
+
+.elect-id {
+    font-size: 1.2rem;
+}
+
+.elect-id p::before {
+    content: "#";
+}
+
+.elect .date {
+    display: flex;
+    /* font-size: .7rem; */
+}
+
+
+/* Posted Election View  */
+
+.getPostData a {
+    list-style: none;
+    text-decoration: none;
+    /* color: #000 !important; */
+}
+
+.getPost-tle {
+    color: #AE3D2B;
+    letter-spacing: .3rem;
+}
+
+.getPost {
+    padding: 4rem 0 2rem 0;
+}
+
+.getCand {
+    align-items: center;
+    display: flex;
+    padding: .5rem 0;
+}
+
+.get-cand-img img {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 2rem;
+}
+
+.get-cand-info h3 {
+    text-transform: capitalize;
+}

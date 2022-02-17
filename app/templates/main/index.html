@@ -12,31 +12,19 @@
 
 </head>
 
-
 <body>
-
     <header class="homepage-header">
-        <div class="container-fluid">
+        <div class="container">
             <nav class="d-flex justify-content-between">
                 <img src="{{url_for('static',filename='asset-images/vote_icon.png')}}" alt="">
                 <h1 class="pt-5 fw-bold"><span class="uwazi-title"> UWAZI</span> <span class="poll-title"> POLL</span></h1>
-                <div></div>
-
             </nav>
-
-            <div class="slogan">
-                <!-- <h1 class="text-center m-5">VOTE</h1> -->
-
-            </div>
-
             <div class="login-options d-flex justify-content-center">
-
                 <a href="{{url_for('auth.login')}}" class="btn btn-primary mx-5 px-5">Student</a>
                 <a href="{{url_for('auth.admin_login')}}" class="btn btn-danger mx-5 px-5">Admin</a>
             </div>
         </div>
     </header>
-
 </body>
 
 </html>

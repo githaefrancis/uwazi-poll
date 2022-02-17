@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -8,177 +9,167 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-   <link rel="stylesheet" href="{{url_for('static',filename='css/main/index.css')}}">
-
-    {% if title %}
-        <title>Dashboard - {{ title }}</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/main/index.css')}}"> {% if title %}
+    <title>Dashboard - {{ title }}</title>
     {% else %}
-        <title>Dashboard-student</title>
+    <title>Dashboard-student</title>
     {% endif %}
 </head>
+
 <body>
     <div class="nav1">
-    <nav class="navbar navbar-expand-lg navbar-color bg-co">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Student &nbsp; <span id="dash">Dashboard</span></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg navbar-color bg-co">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Student &nbsp; <span id="dash">Dashboard</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav mr-auto">
-              </div>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav mr-auto">
+                    </div>
 
-            <div class="navbar-nav">
-                  <a class="nav-item nav-link" href="#">Welcome,</a>
-                  <a class="nav-item nav-link" href="#">Student</a>
-                  <a class="nav-item nav-link" href="#">Logout</a>
-              </div>
-          </div>
-        </div>
-      </nav>
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link" href="#">Welcome,</a>
+                        <a class="nav-item nav-link" href="#">Student</a>
+                        <a class="nav-item nav-link" href="{{url_for('auth.logout')}}">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </div>
- <div class="container">
-<h1 class="text-center"><span id="act">Active</span>&nbsp<span id="election">Election</span><img src="../static/asset-images/hand-voting-ballot-box-icon-260nw-1342666157.jpg" style="height: 50px; width:50px;"></h1>
-<div class="align-self-center border 2px vote">
-<div class="time">
-    <div class="row">
-        <div class="col-md-6 ml-6 p-4">
-            <form>
-                <label for="startTime" >Start Time:</label>
-              </form>
-        </div>
-        <div class="col-md-6 mr-4 p-4">
-            <form>
-                <label for="startTime" >End Time:</label>
-                
-              </form>
-        </div>
-    </div>
-    
-</div>
-<div class="election-title">
-    <div class="row">
-        <div class="col-12 p-2">
-            <form>
-                <label for="startTime" class="form-label">1:</label>&nbsp;  &nbsp;  &nbsp; 
-                <label for="startTime" class="form-label">February annual elections:</label>&nbsp; &nbsp; &nbsp;
-                <label for="startTime" class="form-label">Posts: 2:</label>	&nbsp; &nbsp; &nbsp;
-                <button type="submit" class="btn">vote</button>
-              </form>
-        </div>
-        
-    </div>
-    
-</div>
-</div> 
+    <div class="container">
+        <h1 class="text-center"><span id="act">Active</span>&nbsp<span id="election">Election</span><img src="../static/asset-images/hand-voting-ballot-box-icon-260nw-1342666157.jpg" style="height: 50px; width:50px;"></h1>
+        <!-- <div class="align-self-center border 2px vote">
+            <div class="time">
+                <div class="row">
+                    <div class="col-md-6 ml-6 p-4">
+                        <form>
+                            <label for="startTime">Start Time:</label>
+                        </form>
+                    </div>
+                    <div class="col-md-6 mr-4 p-4">
+                        <form>
+                            <label for="startTime">End Time:</label>
 
- <!-- section 2 -->
-<div class="cand">
-<h1 class="text-center"><span id="act">Candidate</span>&nbsp<span id="election">List</span><img src="../static/asset-images/hand-voting-ballot-box-icon-260nw-1342666157.jpg" style="height: 50px; width:50px;"></h1>
-<div class="row mt-5 ml-5 p-5">
-<div class="col">
-    <h3 id="act">Class Rep</h3>
-    <article class="media content-section">
-        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" 
-        style="height: 50px; width:50px;"> 
-        <h4><strong>Francis</strong></h4>
-        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
-    </article>
-    <article class="media content-section">
-        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" 
-        style="height: 50px; width:50px;"> 
-        <h4><strong>Francis</strong></h4>
-        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
-    </article>
-    <article class="media content-section">
-        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" 
-        style="height: 50px; width:50px;"> 
-        <h4><strong>Francis</strong></h4>
-        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
-    </article>
-    <article class="media content-section">
-        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" 
-        style="height: 50px; width:50px;"> 
-        <h4><strong>Francis</strong></h4>
-        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
-    </article>
-    <article class="media content-section">
-        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" 
-        style="height: 50px; width:50px;"> 
-        <h4><strong>Francis</strong></h4>
-        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
-    </article>
-</div>
-<div class="col">
-    <h3 id="election">Assistant Class Rep</h3>
-    <article class=" content-section">
-        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" 
-        style="height: 50px; width:50px;"> 
-        <h4><strong>Francis</strong></h4>
-        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
-    </article>
-    <article class="media content-section">
-        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" 
-        style="height: 50px; width:50px;"> 
-        <h4><strong>Francis</strong></h4>
-        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
-    </article>
-    <article class="media content-section">
-        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" 
-        style="height: 50px; width:50px;"> 
-        <h4><strong>Francis</strong></h4>
-        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
-    </article>
-    <article class="media content-section">
-        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" 
-        style="height: 50px; width:50px;"> 
-        <h4><strong>Francis</strong></h4>
-        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
-    </article>
-    <article class="media content-section">
-        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" 
-        style="height: 50px; width:50px;"> 
-        <h4><strong>Francis</strong></h4>
-        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
-    </article>
-</div>
-</div>
-</div>
-<!-- section 3 -->
-<div class="view">
-    <h1 class="text-center"><span id="election">Votes</span><img src="../static/asset-images/hand-voting-ballot-box-icon-260nw-1342666157.jpg"
-         style="height: 50px; width:50px;"></h1>
-         <div class="text-center"><strong><span>Status</span>&nbsp; &nbsp; &nbsp;<span>Open</span></div></strong>
-         <div class="row mt-5 ml-5 p-5">
-            <div class="col border m-3">
-                <h3 id="act">Class Rep</h3>
-               <h4><strong>Your Vote:</strong>&nbsp;<span id="act">Francis</span></h4>
-               <h5><strong>Live Votes</strong></h5>
-               <ol>
-                   <li><strong>Faiso-<span>15</span></strong></li>
-                   <li><strong>Faiso-<span>15</span></strong></li>
-                   <li><strong>Faiso-<span>15</span></strong></li>
-                   <li><strong>Faiso-<span>15</span></strong></li>
-                   <li><strong>Faiso-<span>15</span></strong></li>
-               </ol>
-            </div>
-            <div class="col border m-3">
-                <h3 id="election">Assistant Class Rep</h3>
-                <h4><strong>Your Vote:</strong>&nbsp;<span id="election">Francis</span></h4>
-               <h5><strong>Live Votes</strong></h5>
-               <ol>
-                   <li><strong>Faiso-<span>15</span></strong></li>
-                   <li><strong>Faiso-<span>15</span></strong></li>
-                   <li><strong>Faiso-<span>15</span></strong></li>
-                   <li><strong>Faiso-<span>15</span></strong></li>
-                   <li><strong>Faiso-<span>15</span></strong></li>
-               </ol>
-               
-            </div>
-            </div>
-</div>
+                        </form>
+                    </div>
+                </div>
 
-</div>
+            </div>
+            <div class="election-title">
+                <div class="row">
+                    <div class="col-12 p-2">
+                        <form>
+                            <label for="startTime" class="form-label">1:</label>&nbsp; &nbsp; &nbsp;
+                            <label for="startTime" class="form-label">February annual elections:</label>&nbsp; &nbsp; &nbsp;
+                            <label for="startTime" class="form-label">Posts: 2:</label> &nbsp; &nbsp; &nbsp;
+                            <button type="submit" class="btn">vote</button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div> -->
+
+        <!-- section 2 -->
+        <!-- <div class="cand">
+            <h1 class="text-center"><span id="act">Candidate</span>&nbsp<span id="election">List</span><img src="../static/asset-images/hand-voting-ballot-box-icon-260nw-1342666157.jpg" style="height: 50px; width:50px;"></h1>
+            <div class="row mt-5 ml-5 p-5">
+                <div class="col">
+                    <h3 id="act">Class Rep</h3>
+                    <article class="media content-section">
+                        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" style="height: 50px; width:50px;">
+                        <h4><strong>Francis</strong></h4>
+                        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
+                    </article>
+                    <article class="media content-section">
+                        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" style="height: 50px; width:50px;">
+                        <h4><strong>Francis</strong></h4>
+                        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
+                    </article>
+                    <article class="media content-section">
+                        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" style="height: 50px; width:50px;">
+                        <h4><strong>Francis</strong></h4>
+                        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
+                    </article>
+                    <article class="media content-section">
+                        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" style="height: 50px; width:50px;">
+                        <h4><strong>Francis</strong></h4>
+                        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
+                    </article>
+                    <article class="media content-section">
+                        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" style="height: 50px; width:50px;">
+                        <h4><strong>Francis</strong></h4>
+                        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
+                    </article>
+                </div>
+                <div class="col">
+                    <h3 id="election">Assistant Class Rep</h3>
+                    <article class=" content-section">
+                        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" style="height: 50px; width:50px;">
+                        <h4><strong>Francis</strong></h4>
+                        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
+                    </article>
+                    <article class="media content-section">
+                        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" style="height: 50px; width:50px;">
+                        <h4><strong>Francis</strong></h4>
+                        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
+                    </article>
+                    <article class="media content-section">
+                        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" style="height: 50px; width:50px;">
+                        <h4><strong>Francis</strong></h4>
+                        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
+                    </article>
+                    <article class="media content-section">
+                        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" style="height: 50px; width:50px;">
+                        <h4><strong>Francis</strong></h4>
+                        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
+                    </article>
+                    <article class="media content-section">
+                        <img class="rounded-circle article-img" src="../static/asset-images/kisspng-computer-icons-user-profile-portable-network-graph-5cb9f8c9e607f6.0894876015556917219422.jpg" style="height: 50px; width:50px;">
+                        <h4><strong>Francis</strong></h4>
+                        <input class="btn btn-outline-primary" type="button" name="button" value="Vote">
+                    </article>
+                </div>
+            </div>
+        </div> -->
+        <!-- section 3 -->
+        <!-- <div class="view">
+            <h1 class="text-center"><span id="election">Votes</span><img src="../static/asset-images/hand-voting-ballot-box-icon-260nw-1342666157.jpg" style="height: 50px; width:50px;"></h1>
+            <div class="text-center"><strong><span>Status</span>&nbsp; &nbsp; &nbsp;<span>Open</span></div></strong>
+                <div class="row mt-5 ml-5 p-5">
+                    <div class="col border m-3">
+                        <h3 id="act">Class Rep</h3>
+                        <h4><strong>Your Vote:</strong>&nbsp;<span id="act">Francis</span></h4>
+                        <h5><strong>Live Votes</strong></h5>
+                        <ol>
+                            <li><strong>Faiso-<span>15</span></strong></li>
+                            <li><strong>Faiso-<span>15</span></strong></li>
+                            <li><strong>Faiso-<span>15</span></strong></li>
+                            <li><strong>Faiso-<span>15</span></strong></li>
+                            <li><strong>Faiso-<span>15</span></strong></li>
+                        </ol>
+                    </div>
+                    <div class="col border m-3">
+                        <h3 id="election">Assistant Class Rep</h3>
+                        <h4><strong>Your Vote:</strong>&nbsp;<span id="election">Francis</span></h4>
+                        <h5><strong>Live Votes</strong></h5>
+                        <ol>
+                            <li><strong>Faiso-<span>15</span></strong></li>
+                            <li><strong>Faiso-<span>15</span></strong></li>
+                            <li><strong>Faiso-<span>15</span></strong></li>
+                            <li><strong>Faiso-<span>15</span></strong></li>
+                            <li><strong>Faiso-<span>15</span></strong></li>
+                        </ol>
+
+                    </div>
+                </div>
+            </div> -->
+
+
+    </div>
 </body>
+
 </html>
 <!-- 2164211 -->
