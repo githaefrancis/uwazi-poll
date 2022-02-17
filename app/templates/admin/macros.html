@@ -41,3 +41,30 @@
 {%endif%}
 
 {% endmacro %}
+
+{% macro displayPersons(student_list,post,election_id) %}
+{%if student_list%}
+{% for student in student_list %}
+<div class="d-flex justify-content-between shadow mb-3 p-3">
+
+  <span>Name {{student.name}} </span>  <span>Student id: {{student.student_id}}</span> <span>Email: {{student.email}}</span> <a href="{{url_for('admin.add_candidate',election_id=election_id,post_id=post.id,user_id=student.id)}}">Add as Candidate</a>
+  <!-- <span>Name {{student.name}} </span>  <span>Student id: {{student.student_id}}</span> <span>Email: {{student.email}}</span> 
+  <form action="{{url_for('admin.add_candidate',election_id=election_id,post_id=post.id,user_id=student.id)}}">
+  <input type="submit" value="Add Candidature">
+</form> -->
+
+</div>
+{% endfor %}
+{%endif%}
+{% endmacro %}
+
+{% macro displayCandidates(candidate_list,post,election_id) %}
+{%if candidate_list%}
+{% for candidate in candidate_list %}
+<div  class="d-flex justify-content-between card shadow mb-3 p-3 ">
+
+  <span>Name: {{candidate.user.name}}</span>  <span>Student id: {{candidate.user.student_id}}</span> <span>Email: {{candidate.user.email}}</span> <a href="{{url_for('admin.candidate_remove',election_id=election_id,post_id=post.id,candidate_id=candidate.id)}}">Remove</a>
+</div>
+{% endfor %}
+{%endif%}
+{% endmacro %}

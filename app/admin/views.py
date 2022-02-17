@@ -1,12 +1,14 @@
 from re import A
 from flask import redirect, render_template,request,url_for
+from flask_login import current_user, login_required
 from . import admin
 from .forms import ElectionForm, PostForm
-from ..models import Election, Post
+from ..models import Candidate, Election, Post,User
 from datetime import datetime
 
 
 @admin.route('/admin',methods=['GET','POST'])
+@login_required
 def admin_view():
   election_form=ElectionForm()
   elections=Election.query.order_by(Election.id.desc()).all()
@@ -23,6 +25,7 @@ def admin_view():
   return render_template('admin/admin.html',election_form=election_form,elections=elections)
 
 @admin.route('/admin/election/<id>/posts',methods=['GET','POST'])
+@login_required
 def election(id):
   election=Election.query.filter_by(id=id).first()
   post_form=PostForm()
@@ -39,8 +42,39 @@ def election(id):
   return render_template('admin/election.html',election=election,post_form=post_form,posts=posts)
 
 @admin.route('/admin/post/election/<election_id>/post/<post_id>')
+@login_required
 def post(election_id,post_id):
+  if current_user.role_id==1:
+    return redirect(url_for('main.index'))
   post=Post.query.filter_by(id=post_id).first()
+  students=User.query.filter_by(role_id=1).all()
+  candidates=Candidate.query.filter_by(post_id=post_id).all()
 
-  return render_template('admin/post.html',post=post)
-  
+  return render_template('admin/post.html',post=post,students=students,candidates=candidates,election_id=election_id)
+
+
+@admin.route('/admin/post/election/<election_id>/post/<post_id>/candidate/<user_id>')
+@login_required
+def add_candidate(election_id,post_id,user_id):
+  target_post=Post.query.filter_by(id=post_id).first()
+  target_user=User.query.filter_by(id=user_id).first()
+
+  if Candidate.query.filter_by(user=target_user,post=target_post).first():
+    return redirect(url_for('admin.post',election_id=election_id,post_id=post_id))
+
+  else:
+    new_candidate=Candidate(user=target_user,post=target_post)
+    new_candidate.save_candidate()
+
+    return redirect(url_for('admin.post',election_id=election_id,post_id=post_id))
+
+
+@admin.route('/admin/post/election/<election_id>/post/<post_id>/candidate/<candidate_id>/remove')
+@login_required
+def candidate_remove(election_id,post_id,candidate_id):
+  target_candidate=Candidate.query.filter_by(id=candidate_id).first()
+  if target_candidate:
+    target_candidate.remove_candidate()
+
+  return redirect(url_for('admin.post',election_id=election_id,post_id=post_id))
+
