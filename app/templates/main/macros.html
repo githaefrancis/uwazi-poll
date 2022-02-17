@@ -1,0 +1,27 @@
+{% macro displayElections(election_list,post_count) %}
+
+{% if election_list %}
+
+{% for election in election_list%}
+<div class="card m-5 shadow border-0">
+
+  <div class="d-flex justify-content-around m-3 p-3">
+    <span>Start Time: {{election.start_time}}</span> 
+    <span>End Time: {{election.end_time}}</span></div>
+
+    <div class="d-flex justify-content-around align-items-center m-5 p-3">
+      <span># {{election.id}}</span> 
+      <span>Title: {{election.title}}</span> 
+      
+      <span>Posts: {{post_count[election.id] or 0}} </span>
+      <span><a href="" class="btn btn-secondary">Vote</a></span>
+    </div>
+</div>
+
+{% endfor %}
+{% else %}
+<p>Oops, it's not election season yet! Hold your horse.</p>
+
+
+{%endif%}
+{% endmacro %}

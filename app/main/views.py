@@ -4,6 +4,8 @@ from app.models import User
 from . import main
 from werkzeug.utils import secure_filename
 import os
+from ..request import get_elections, get_posts_count_for_all_elections
+
 
 ALLOWED_EXTENSIONS={'png','jpg','jpeg','gif'}
 
@@ -15,6 +17,17 @@ def index():
 @main.route('/student')
 def student():
   return render_template('main/student.html',title='Student')  
+
+@main.route('/home')
+def home():
+  election_list=get_elections()
+  post_count=get_posts_count_for_all_elections()
+  return render_template('main/home.html',election_list=election_list,post_count=post_count)
+
+main.route('/election/<id>/vote')
+def vote():
+  return render_template('main/vote.html')
+
 
 def allowed_file(filename):
     return '.' in filename and \
