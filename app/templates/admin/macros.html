@@ -49,10 +49,7 @@
 <div class="d-flex justify-content-between shadow mb-3 p-3">
 
   <span>Name {{student.name}} </span>  <span>Student id: {{student.student_id}}</span> <span>Email: {{student.email}}</span> <a href="{{url_for('admin.add_candidate',election_id=election_id,post_id=post.id,user_id=student.id)}}">Add as Candidate</a>
-  <!-- <span>Name {{student.name}} </span>  <span>Student id: {{student.student_id}}</span> <span>Email: {{student.email}}</span> 
-  <form action="{{url_for('admin.add_candidate',election_id=election_id,post_id=post.id,user_id=student.id)}}">
-  <input type="submit" value="Add Candidature">
-</form> -->
+  
 
 </div>
 {% endfor %}
@@ -68,4 +65,20 @@
 </div>
 {% endfor %}
 {%endif%}
+{% endmacro %}
+
+
+{% macro displayStudents(student_list) %}
+
+{%if student_list%}
+{% for student in student_list %}
+<div class="d-flex justify-content-between shadow mb-3 p-3">
+
+  <span>Name {{student.name}} </span>  <span>Student id: {{student.student_id}}</span> <span>Email: {{student.email}}</span> 
+  
+
+</div>
+{% endfor %}
+{%endif%}
+
 {% endmacro %}
