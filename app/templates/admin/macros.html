@@ -19,7 +19,7 @@
 {%endif%}
 {% endmacro %}
 
-{% macro displayPosts(post_list) %}
+{% macro displayPosts(post_list,all_winners) %}
 
 {% if post_list%}
 {% for post in post_list %}
@@ -29,6 +29,7 @@
 
     <span> id: {{post.id}}</span>
     <span>{{post.title}}</span>
+    <span>Winner <span class="text-success"> {{all_winners[post.id] or 'Pending'}} </span> </span>
     <a href="{{url_for('admin.post',election_id=post.election.id,post_id=post.id)}}" class="manage"> Manage</a>
   </div>
 </div>
@@ -58,12 +59,12 @@
 {%endif%}
 {% endmacro %}
 
-{% macro displayCandidates(candidate_list,post,election_id) %}
+{% macro displayCandidates(candidate_list,post,election_id,vote_count) %}
 {%if candidate_list%}
 {% for candidate in candidate_list %}
 <div  class="d-flex justify-content-between card shadow mb-3 p-3 ">
 
-  <span>Name: {{candidate.user.name}}</span>  <span>Student id: {{candidate.user.student_id}}</span> <span>Email: {{candidate.user.email}}</span> <a href="{{url_for('admin.candidate_remove',election_id=election_id,post_id=post.id,candidate_id=candidate.id)}}">Remove</a>
+  <span>Name: {{candidate.user.name}}</span>  <span>Student id: {{candidate.user.student_id}}</span> <span>Email: {{candidate.user.email}}</span> <span>Votes : {{vote_count[candidate.id]}}</span> <a href="{{url_for('admin.candidate_remove',election_id=election_id,post_id=post.id,candidate_id=candidate.id)}}">Remove</a>
 </div>
 {% endfor %}
 {%endif%}
