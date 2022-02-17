@@ -5,7 +5,7 @@ from . import admin
 from .forms import ElectionForm, PostForm
 from ..models import Candidate, Election, Post,User
 from datetime import datetime
-
+from ..request import get_elections
 
 @admin.route('/admin',methods=['GET','POST'])
 @login_required
@@ -53,7 +53,7 @@ def post(election_id,post_id):
   post=Post.query.filter_by(id=post_id).first()
   students=User.query.filter_by(role_id=1).all()
   candidates=Candidate.query.filter_by(post_id=post_id).all()
-
+  get_elections()
   return render_template('admin/post.html',post=post,students=students,candidates=candidates,election_id=election_id)
 
 
