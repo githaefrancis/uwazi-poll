@@ -6,9 +6,9 @@
 {% endblock %}
 
 {% block content %}
-<div class="container d-flex justify-content-center">
-  <div class="card col-lg-6 col-12 p-lg-3 p-2 mt-4 shadow border-0">
-    <h3 class="center">Login</h3>
+<div class="container d-flex justify-content-center mb-5">
+  <div class="card col-lg-6 col-12 p-lg-3 p-2 mt-4 shadow border-0 mb-5">
+    <h3 class="center">Login As a Student</h3>
     {{wtf.quick_form(login_form)}}
     <p>Don't have an account?  <a href="{{url_for('auth.register')}}">Sign Up</a></p>
   </div>

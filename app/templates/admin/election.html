@@ -3,7 +3,7 @@
 {% import 'admin/macros.html' as macro %}
 {% block content %}
 <h1>Election Details</h1>
-<div class="d-flex justify-content-between">
+<div class="d-flex justify-content-between align-items-center">
 <h4>{{election.title}}</h4>
 <h4>id: {{election.id}}</h4>
 
@@ -18,7 +18,7 @@
   {{post_form.hidden_tag()}}
   {{wtf.form_errors(post_form,hiddens="only")}}
   
-  <div class="d-flex p-3">
+  <div class="d-flex p-3 align-items-center">
     <div class="mx-3">{{wtf.form_field(post_form.title)}}</div>
     
     <div class="mx-3">{{wtf.form_field(post_form.submit)}}</div>
