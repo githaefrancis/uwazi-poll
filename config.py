@@ -22,6 +22,16 @@ class DevConfig(Config):
 
   DEBUG=True
 
+
+# copied config 
+class DevMainConfig(Config):
+      '''
+  Development configuratiion child class
+  '''
+      SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://moringa:root@localhost/uwazi_poll'
+
+      DEBUG=True
+
 class TestConfig(Config):
   '''
   Test configuration child class
@@ -33,5 +43,9 @@ config_options={
 
   'production':ProdConfig,
   'development':DevConfig,
-  'test':TestConfig
+  'test':TestConfig,
+  'mainConfig' : DevMainConfig
 }
+
+
+
