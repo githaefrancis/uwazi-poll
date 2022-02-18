@@ -33,11 +33,13 @@ def admin_login():
      return redirect(url_for('auth.admin_login'))
     
   if login_form.validate_on_submit():
-    user=User.query.filter_by(email=login_form.email.data).first()
+    user=User.query.filter_by(email=login_form.email.data,role_id=2).first()
     print('validated')
     if user is not None and user.verify_password(login_form.password.data):
+      print('password_verified')
       login_user(user)
       flash(f'Welcome, {user.name}','success')
+      
       return redirect(request.args.get('next') or url_for('admin.admin_view'))
     flash('Invalid username or password','error')
   return render_template('auth/adminLogin.html',login_form=login_form)
