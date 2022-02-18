@@ -2,7 +2,9 @@
 {% extends 'admin/base.html' %}
 {% import 'admin/macros.html' as macro %}
 {% block content %}
-
+<h2>Elections Portal</h2>
+<div class="card p-2">
+<h5>Create Election</h5>
 <form action="{{url_for('admin.admin_view')}}" method="POST">
 
   {{election_form.hidden_tag()}}
@@ -16,7 +18,7 @@
 
   
 </form>
-
+</div>
 <!-- {{wtf.quick_form(election_form)}} -->
 
 {{macro.displayElections(elections)}}

@@ -2,7 +2,7 @@ from app import create_app,db
 from app.models import User,Role,Election,Post,Candidate,Vote
 from flask_migrate import Migrate
 
-app=create_app('production')
+app=create_app('development')
 migrate=Migrate()
 migrate.init_app(app,db)
 

@@ -1,12 +1,15 @@
 {%extends 'admin/base.html'%}
 {% import 'admin/macros.html' as macro %}
 {% block content %}
+
 <h1>Single Post Page</h1>
+<div class="card p-3">
 <h4>Post: {{post.title}} </h4>
 <h4> Election: {{post.election.title}} election</h4>
 <h5>Date: {{post.election.start_time}}</h5>
+<h5>Election Status <span class="bg-secondary p-1 text-white rounded-3" >{{post.election.status}}</span></h5>
 <h5>winner: <span class="text-success"> {{winner or 'Pending'}}</span></h5>
-
+</div>
 <hr>
 
 <h1>Candidates</h1>
