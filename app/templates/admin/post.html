@@ -1,7 +1,7 @@
 {%extends 'admin/base.html'%}
 {% import 'admin/macros.html' as macro %}
 {% block content %}
-
+<a href="{{url_for('admin.election',id=post.election.id)}}" class="btn bg-secondary text-white">Back</a>
 <h1>Single Post Page</h1>
 <div class="card p-3">
 <h4>Post: {{post.title}} </h4>
