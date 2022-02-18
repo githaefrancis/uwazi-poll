@@ -6,14 +6,19 @@
 <div class="card m-5 shadow border-0">
 
   <div class="d-flex justify-content-around m-3 p-3">
-    <span>Start Time: {{election.start_time}}</span> 
-    <span>End Time: {{election.end_time}}</span></div>
+    <span class="blue-title">Start Time: {{election.start_time}}</span> 
+    <span class="red-title">End Time: {{election.end_time}}</span></div>
 
-    <div class="d-flex justify-content-around align-items-center m-5 p-3">
+    <div class="d-flex justify-content-around align-items-center m-5 p-3 shadow">
       <span># {{election.id}}</span> 
-      <span>Title: {{election.title}}</span> 
-      
-      <span>Posts: {{post_count[election.id] or 0}} </span>
+      <span><h3>Title: {{election.title}}</h3></span>
+      {% if election.status=='open' %} 
+      <span class="badge bg-success text-white">{{election.status}} </span>
+      {% else %}
+      <span class="badge bg-secondary text-white">{{election.status}} </span>
+
+      {% endif %}
+      <span class="badge bg-secondary text-white">Posts: {{post_count[election.id] or 0}} </span>
       <span><a href="{{url_for('main.vote',id=election.id)}}" class="btn btn-secondary">Vote</a></span>
     </div>
 </div>
@@ -26,24 +31,33 @@
 {%endif%}
 {% endmacro %}
 
-{%macro displayPostCard(election,post_list,candidate_dict,vote_status_dict) %}
+{%macro displayPostCard(election,post_list,candidate_dict,vote_status_dict,election_winners_dict,election_posts_results_dict) %}
 
 {% for post in post_list %}
 {% if post.election.status=='closed' %}
 <div class="col-lg-6">
   <div class="card mb-3">
 
-    <h2 class="d-flex justify-content-around"><span>Post Title</span>  <span>Winner: <span class="text-success"> Name</span></span> </h2>
-    <div class="d-flex justify-content-around my-2 p-3">
-      {% for candidate in candidate_dict[post.id] %}
-      <span><img src="{{url_for('static',filename='asset-images/vote_icon.png')}}" alt=""></span>
+    <h2 class="d-flex justify-content-around"><span>{{post.title}}</span>  <span>Winner:  <span class="text-success"> {{election_winners_dict[post.id] or "No Winner"}}</span></span> </h2>
 
-      <span>{{candidate.name}}</span>
+    {% for candidate in candidate_dict[post.id] %}
+    <div class="d-flex justify-content-around align-items-center my-2 p-3">
 
-      <span> n Votes </span>
+      {% if candidate.user.profile_pic_path %}
+    <span><img src="{{url_for('static',filename=candidate.user.profile_pic_path)}}" alt="" class="" height="96"></span>
+      {% else%}
 
-      {% endfor %}
+    <span><img src="{{url_for('static',filename='photos/avatar.png')}}" alt="" height="96"></span>
+
+
+      {% endif %}
+      <span>{{candidate.user.name}}</span>
+
+      <span class="badge bg-secondary text-white">{{election_posts_results_dict[post.id][candidate.id] or 0}}  Votes </span>
+
     </div>
+      {% endfor %}
+   
 
   </div>
 
@@ -61,7 +75,14 @@
       {% for candidate in candidate_dict[post.id] %}
     <div class="d-flex justify-content-around align-items-center my-2 p-3">
       
-      <span><img src="{{url_for('static',filename='asset-images/vote_icon.png')}}" height="48" alt=""></span>
+      {% if candidate.user.profile_pic_path %}
+    <span><img src="{{url_for('static',filename=candidate.user.profile_pic_path)}}" alt="" class="" height="96"></span>
+      {% else%}
+
+    <span><img src="{{url_for('static',filename='photos/avatar.png')}}" alt="" height="96"></span>
+
+
+      {% endif %}
 
       <span>{{candidate.user.name}}</span>
 
@@ -96,5 +117,35 @@
 
 
 {% endfor %}
+
+{% endmacro %}
+
+{% macro displayFlash()  %}
+
+<div class="flash-header d-flex justify-content-center container">
+  {% with messages=get_flashed_messages() %}
+  {% if get_flashed_messages(category_filter=["error"]) %}
+  {% if messages %}
+
+<ul class="flashes list-unstyled">
+  {% for message in messages %}
+  <li class="bg-danger feed-message text-white text-center fs-4 mt-2 rounded-3">{{message}}</li>
+  {%endfor%}
+</ul>
+{%endif%}
+
+{% elif get_flashed_messages(category_filter=["success"]) %}
+  {% if messages %}
+
+<ul class="flashes list-unstyled text-center rounded-3">
+  {% for message in messages %}
+  <li class="bg-success feed-message text-white text-center fs-4 mt-2 rounded-3">{{message}}</li>
+  {%endfor%}
+</ul>
+{%endif%}
+{%endif%}
+
+{% endwith %}
+</div>
 
 {% endmacro %}

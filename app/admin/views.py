@@ -103,3 +103,10 @@ def close_election(id):
 def voters():
   students=User.query.filter_by(role_id=1).all()
   return render_template('admin/voters.html',students=students)
+
+@admin.route('/election/<id>/activate')
+def activate_election(id):
+  target_election=Election.query.filter_by(id=id).first()
+  target_election.active=True
+  target_election.save_election()
+  return redirect(request.referrer)

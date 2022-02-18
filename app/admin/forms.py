@@ -15,5 +15,5 @@ class ElectionForm(FlaskForm):
   submit=SubmitField('Create')
 
 class PostForm(FlaskForm):
-  title=StringField('Title')
+  title=StringField('Title',validators=[InputRequired()])
   submit=SubmitField('Create')

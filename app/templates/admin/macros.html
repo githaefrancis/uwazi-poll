@@ -1,13 +1,15 @@
 {% macro displayElections(election_list) %}
+<h1> Election list </h1>
 {% if election_list%}
 {% for election in election_list %}
 <div class="card mb-3 border-0 shadow">
   
   <div class="election d-flex justify-content-between p-3">
 
-    <span> id: {{election.id}}</span>
+    <span> Election id: {{election.id}}</span>
     <span>Title: {{election.title}}</span>
-    <a href="{{url_for('admin.election',id=election.id)}}" class="manage"> Manage</a>
+    <span class=" bg-secondary p-1 text-white rounded-3">{{election.status}}</span>
+    <a href="{{url_for('admin.election',id=election.id)}}" class="manage btn bg-secondary rounded-pill text-white"> Manage</a>
   </div>
 </div>
 
@@ -30,7 +32,7 @@
     <span> id: {{post.id}}</span>
     <span>{{post.title}}</span>
     <span>Winner <span class="text-success"> {{all_winners[post.id] or 'Pending'}} </span> </span>
-    <a href="{{url_for('admin.post',election_id=post.election.id,post_id=post.id)}}" class="manage"> Manage</a>
+    <a href="{{url_for('admin.post',election_id=post.election.id,post_id=post.id)}}" class="manage btn bg-secondary rounded-pill text-white"> Manage</a>
   </div>
 </div>
 
@@ -48,8 +50,10 @@
 {% for student in student_list %}
 <div class="d-flex justify-content-between shadow mb-3 p-3">
 
-  <span>Name {{student.name}} </span>  <span>Student id: {{student.student_id}}</span> <span>Email: {{student.email}}</span> <a href="{{url_for('admin.add_candidate',election_id=election_id,post_id=post.id,user_id=student.id)}}">Add as Candidate</a>
-  
+  <span>Name {{student.name}} </span>  <span>Student id: {{student.student_id}}</span> <span>Email: {{student.email}}</span>
+  {% if post.election.status=='open' %}
+  <a href="{{url_for('admin.add_candidate',election_id=election_id,post_id=post.id,user_id=student.id)}}" class="manage btn bg-secondary rounded-pill text-white">Add as Candidate</a>
+  {% endif %}
 
 </div>
 {% endfor %}
@@ -61,7 +65,10 @@
 {% for candidate in candidate_list %}
 <div  class="d-flex justify-content-between card shadow mb-3 p-3 ">
 
-  <span>Name: {{candidate.user.name}}</span>  <span>Student id: {{candidate.user.student_id}}</span> <span>Email: {{candidate.user.email}}</span> <span>Votes : {{vote_count[candidate.id]}}</span> <a href="{{url_for('admin.candidate_remove',election_id=election_id,post_id=post.id,candidate_id=candidate.id)}}">Remove</a>
+  <span>Name: {{candidate.user.name}}</span>  <span>Student id: {{candidate.user.student_id}}</span> <span>Email: {{candidate.user.email}}</span> <span>Votes : {{vote_count[candidate.id]}}</span> 
+  {% if post.election.status=='open' %}  
+  <a href="{{url_for('admin.candidate_remove',election_id=election_id,post_id=post.id,candidate_id=candidate.id)}}" class="manage btn bg-secondary rounded-pill text-white">Remove</a>
+  {% endif %}
 </div>
 {% endfor %}
 {%endif%}
@@ -74,11 +81,41 @@
 {% for student in student_list %}
 <div class="d-flex justify-content-between shadow mb-3 p-3">
 
-  <span>Name {{student.name}} </span>  <span>Student id: {{student.student_id}}</span> <span>Email: {{student.email}}</span> 
+  <span>{{student.name}} </span>  <span>Student id: {{student.student_id}}</span> <span>Email: {{student.email}}</span> 
   
 
 </div>
 {% endfor %}
 {%endif%}
+
+{% endmacro %}
+
+{% macro displayFlash()  %}
+
+<div class="flash-header d-flex justify-content-center container">
+  {% with messages=get_flashed_messages() %}
+  {% if get_flashed_messages(category_filter=["error"]) %}
+  {% if messages %}
+
+<ul class="flashes list-unstyled">
+  {% for message in messages %}
+  <li class="bg-danger feed-message text-white text-center fs-4 mt-2 rounded-3">{{message}}</li>
+  {%endfor%}
+</ul>
+{%endif%}
+
+{% elif get_flashed_messages(category_filter=["success"]) %}
+  {% if messages %}
+
+<ul class="flashes list-unstyled text-center rounded-3">
+  {% for message in messages %}
+  <li class="bg-success feed-message text-white text-center fs-4 mt-2 rounded-3">{{message}}</li>
+  {%endfor%}
+</ul>
+{%endif%}
+{%endif%}
+
+{% endwith %}
+</div>
 
 {% endmacro %}
