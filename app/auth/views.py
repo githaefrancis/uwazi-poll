@@ -34,6 +34,7 @@ def admin_login():
     
   if login_form.validate_on_submit():
     user=User.query.filter_by(email=login_form.email.data).first()
+    print('validated')
     if user is not None and user.verify_password(login_form.password.data):
       login_user(user)
       flash(f'Welcome, {user.name}','success')
