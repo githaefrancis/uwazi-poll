@@ -8,6 +8,17 @@
 <h4>Election id: {{election.id}}</h4>
 
 <h4 class="badge bg-secondary">Status: {{election.status}}</h4>
+
+{% if election.active %}
+<h4 class="badge bg-success">Status: {{election.status}}</h4>
+
+
+{% else %}
+<a href="{{url_for('admin.activate_election',id=election.id)}}" class="btn btn-success">Activate</a>
+
+
+{% endif %}
+
 <a href="{{url_for('admin.close_election',id=election.id)}}" class="btn btn-danger">Close Voting</a>
 </div>
 <hr>

@@ -89,3 +89,33 @@
 {%endif%}
 
 {% endmacro %}
+
+{% macro displayFlash()  %}
+
+<div class="flash-header d-flex justify-content-center container">
+  {% with messages=get_flashed_messages() %}
+  {% if get_flashed_messages(category_filter=["error"]) %}
+  {% if messages %}
+
+<ul class="flashes list-unstyled">
+  {% for message in messages %}
+  <li class="bg-danger feed-message text-white text-center fs-4 mt-2 rounded-3">{{message}}</li>
+  {%endfor%}
+</ul>
+{%endif%}
+
+{% elif get_flashed_messages(category_filter=["success"]) %}
+  {% if messages %}
+
+<ul class="flashes list-unstyled text-center rounded-3">
+  {% for message in messages %}
+  <li class="bg-success feed-message text-white text-center fs-4 mt-2 rounded-3">{{message}}</li>
+  {%endfor%}
+</ul>
+{%endif%}
+{%endif%}
+
+{% endwith %}
+</div>
+
+{% endmacro %}

@@ -36,3 +36,18 @@
   input{
     margin-bottom: 1.5em;
   }
+
+  .blue-title{
+
+    background-color: #190059;
+    color:white;
+    padding: 5px;
+    font-weight: bold;
+    }
+    
+    .red-title{
+    background-color: #AE3D2B;
+    color:white;
+    padding: 5px;
+    font-weight: bold;
+    }

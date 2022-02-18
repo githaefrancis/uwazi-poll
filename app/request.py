@@ -9,6 +9,11 @@ def get_elections():
   print(electionslist)
   return electionslist
 
+def get_active_elections():
+  electionslist=Election.query.filter_by(active=True).all()
+  print(electionslist)
+  return electionslist
+
 def get_single_election(id):
   return Election.query.filter_by(id=id).first()
 
@@ -42,17 +47,32 @@ def get_candidates_for_all_posts_per_election(id):
 def get_votes_for_candidate_count_per_post(id):
   
   '''
-  method to fetch all votes for a candidate
+  method to fetch all votes for all candidates in a post
   '''
   
   votes_dict={}
   candidates=Candidate.query.filter_by(post_id=id).all()
-  for candidate in candidates:
-    vote_count=len(Vote.query.filter_by(post_id=id,candidate_id=candidate.id).all())
-    votes_dict[candidate.id]=vote_count
+  if candidates:
+    for candidate in candidates:
+      vote_count=len(Vote.query.filter_by(post_id=id,candidate_id=candidate.id).all())
+      votes_dict[candidate.id]=vote_count
 
   return votes_dict
 
+def get_votes_for_all_posts(id):
+  '''
+  method to fetch all votes for an election
+  '''
+
+  election_votes_dict={}
+  posts=Post.query.filter_by(election_id=id).all()
+
+  if posts:
+    for post in posts:
+      votes_for_post=get_votes_for_candidate_count_per_post(post.id)
+      election_votes_dict[post.id]=votes_for_post
+  
+  return election_votes_dict
 
 
 def get_posts_count_for_all_elections():

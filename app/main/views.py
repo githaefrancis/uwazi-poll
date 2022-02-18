@@ -4,7 +4,7 @@ from app.models import Election, User
 from . import main
 from werkzeug.utils import secure_filename
 import os
-from ..request import get_elections, get_posts_count_for_all_elections,get_candidates_for_all_posts_per_election, get_posts_per_election, has_voted_all_posts,vote_for_candidate,get_all_election_winners
+from ..request import get_elections, get_posts_count_for_all_elections,get_candidates_for_all_posts_per_election, get_posts_per_election, has_voted_all_posts,vote_for_candidate,get_all_election_winners,get_votes_for_all_posts,get_active_elections
 
 
 ALLOWED_EXTENSIONS={'png','jpg','jpeg','gif'}
@@ -25,7 +25,7 @@ def student():
 @main.route('/home')
 @login_required
 def home():
-  election_list=get_elections()
+  election_list=get_active_elections()
   post_count=get_posts_count_for_all_elections()
   return render_template('main/home.html',election_list=election_list,post_count=post_count)
 
@@ -37,15 +37,18 @@ def vote(id):
   vote_status=has_voted_all_posts(current_user.id,id)
 
   election_winners={}
+  election_posts_results={}
   if election.status=='closed':
     election_winners=get_all_election_winners(election.id)
+    election_posts_results=get_votes_for_all_posts(election.id)
 
-
-  return render_template('main/vote.html',election=election,all_candidates=all_candidates,posts=posts,vote_status=vote_status,election_winners=election_winners)
+  return render_template('main/vote.html',election=election,all_candidates=all_candidates,posts=posts,vote_status=vote_status,election_winners=election_winners,election_posts_results=election_posts_results)
 
 @main.route('/election/<id>/vote/post/<post_id>/candidate/<candidate_id>')
 def cast_vote(id,post_id,candidate_id):
   vote_for_candidate(current_user.id,post_id,candidate_id)
+  flash('Vote success','success')
+
   return redirect(url_for('main.vote',id=id))
 
 

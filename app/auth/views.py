@@ -13,7 +13,7 @@ def login():
     user=User.query.filter_by(student_id=login_form.student_id.data).first()
     if user is not None and user.verify_password(login_form.password.data):
       login_user(user)
-      flash(f'Welcome, {user.username}','success')
+      flash(f'Welcome, {user.name}','success')
       return redirect(request.args.get('next') or url_for('main.home'))
     flash('Invalid username or password','error')
 
@@ -36,7 +36,7 @@ def admin_login():
     user=User.query.filter_by(email=login_form.email.data).first()
     if user is not None and user.verify_password(login_form.password.data):
       login_user(user)
-      flash(f'Welcome, {user.username}','success')
+      flash(f'Welcome, {user.name}','success')
       return redirect(request.args.get('next') or url_for('admin.admin_view'))
     flash('Invalid username or password','error')
   return render_template('auth/adminLogin.html',login_form=login_form)
@@ -57,7 +57,7 @@ def register():
     # admin.save_user()
     
     # mail_message("Welcome to Fluent Exchange","email/welcome",user.email,user=user)
-    # flash('Registration Successful, Welcome','success')
+    flash('Registration Successful','success')
     return redirect(url_for('auth.login'))
   return render_template('auth/register.html',register_form=register_form)
 
